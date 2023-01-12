@@ -7,9 +7,9 @@ import {
 import { SetBestiesInput } from '../types';
 
 export class FriendshipRepository extends Repository {
-  async show(id: string | number) {
+  async show(id: string | number, count, max_id) {
     const { body } = await this.client.request.send<FriendshipRepositoryShowResponseRootObject>({
-      url: `/api/v1/friendships/${id}/following/?count=12`,
+      url: `/api/v1/friendships/${id}/following/?count=${count}&max_id=${max_id}`,
     });
     return body;
   }
