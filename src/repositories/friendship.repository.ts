@@ -9,7 +9,7 @@ import { SetBestiesInput } from '../types';
 export class FriendshipRepository extends Repository {
   async show(id: string | number) {
     const { body } = await this.client.request.send<FriendshipRepositoryShowResponseRootObject>({
-      url: `/api/v1/friendships/show/${id}/`,
+      url: `/api/v1/friendships/${id}/following/?count=12`,
     });
     return body;
   }
