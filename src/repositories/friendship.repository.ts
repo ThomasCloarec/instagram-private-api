@@ -7,10 +7,13 @@ import {
 import { SetBestiesInput } from '../types';
 
 export class FriendshipRepository extends Repository {
-  async show(id: string | number, count, max_id) {
+  max_id: number = 200;
+    
+  async show(id: string | number) {
     const { body } = await this.client.request.send<FriendshipRepositoryShowResponseRootObject>({
-      url: `/api/v1/friendships/${id}/following/?count=${count}&max_id=${max_id}`,
+      url: `/api/v1/friendships/${id}/following/?count=200&max_id=${this.max_id}`,
     });
+    this.max_id = this.max_id + 200;
     return body;
   }
 
