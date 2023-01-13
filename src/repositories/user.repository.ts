@@ -11,19 +11,19 @@ import { defaults } from 'lodash';
 import * as Chance from 'chance';
 
 export class UserRepository extends Repository {
-  async info(id: string | number): Promise<UserRepositoryInfoResponseUser> {
-    const { body } = await this.client.request.send<UserRepositoryInfoResponseRootObject>({
-      url: `/api/v1/users/${id}/info/`,
-    });
-    return body.user;
-  }
-
-  async usernameinfo(username: string): Promise<UserRepositoryInfoResponseUser> {
+  async info(username: string): Promise<UserRepositoryInfoResponseUser> {
     const { body } = await this.client.request.send<UserRepositoryInfoResponseRootObject>({
       url: `/api/v1/users/web_profile_info/?username=${username}`,
     });
     return body.user;
   }
+
+  // async usernameinfo(username: string): Promise<UserRepositoryInfoResponseUser> {
+  //   const { body } = await this.client.request.send<UserRepositoryInfoResponseRootObject>({
+  //     url: `/api/v1/users/web_profile_info/?username=${username}`,
+  //   });
+  //   return body.user;
+  // }
 
   async arlinkDownloadInfo() {
     const { body } = await this.client.request.send({
